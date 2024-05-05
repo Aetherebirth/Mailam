@@ -1,0 +1,25 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Aetherebirth-gateway"
+run/main_scene="res://Scenes/gateway.tscn"
+config/features=PackedStringArray("4.2", "Mobile")
+config/icon="res://icon.svg"
+
+[autoload]
+
+Gateway="*res://Scenes/Singletons/gateway.gd"
+Authenticate="*res://Scenes/Singletons/authenticate.gd"
+
+[rendering]
+
+renderer/rendering_method="mobile"
