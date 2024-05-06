@@ -6,9 +6,9 @@ var gateway_api : MultiplayerAPI
 
 @export var port = 6942
 var max_players = 100
-#var cert = load("res://X509_Certificate.crt")
-#var key = load("res://x509_Key.key")
-#var dtls_options = TLSOptions.server(key, cert)
+var cert = load("res://Certificate/Aetherebirth_server.crt")
+var key = load("res://Certificate/Aetherebirth_server.key")
+var dtls_options = TLSOptions.server(key, cert)
 func _ready() -> void:
 	StartServer()
 
