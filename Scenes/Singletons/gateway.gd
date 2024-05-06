@@ -41,8 +41,8 @@ func LoginRequest(username, password):
 	Authenticate.AuthenticatePlayer(username, password, player_id)
 	
 @rpc("authority", "call_remote", "reliable")
-func ReturnLoginRequest(player_id, results):
-	ReturnLoginRequest.rpc_id(player_id, results)
+func ReturnLoginRequest(player_id, results, token):
+	ReturnLoginRequest.rpc_id(player_id, results, token)
 	network.disconnect_peer(player_id)
 
 func _peer_connected(id: int) -> void:

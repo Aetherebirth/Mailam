@@ -33,9 +33,9 @@ func AuthenticatePlayer(username, password, player_id):
 	AuthenticatePlayer.rpc_id(1, username, password, player_id)
 
 @rpc("any_peer", "call_remote",  "reliable")
-func AuthenticationResults(results, player_id):
+func AuthenticationResults(results, player_id, token):
 	print("results received and replying to player login request")
-	Gateway.ReturnLoginRequest.rpc_id(player_id, player_id, results)
+	Gateway.ReturnLoginRequest.rpc_id(player_id, player_id, results, token)
 
 func _connection_failed() -> void:
 	print("Connection to auth server failed")
