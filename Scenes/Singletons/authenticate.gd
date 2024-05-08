@@ -27,6 +27,18 @@ func ConnectToServer() -> void:
 	
 	#var network_id = network.get_unique_id()
 
+
+@rpc("any_peer", "call_remote",  "reliable")
+func CreateAccount(username, password, player_id):
+	print("sending out account creation request")
+	CreateAccount.rpc_id(1, username, password, player_id)
+
+@rpc("any_peer", "call_remote",  "reliable")
+func CreateAccountResults(player_id, message):
+	print("Account creation results received !")
+	Gateway.ReturnRegisterRequest(player_id, message)
+
+
 @rpc("any_peer", "call_remote",  "reliable")
 func AuthenticatePlayer(username, password, player_id):
 	print("sending out authentication request")

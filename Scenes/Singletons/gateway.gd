@@ -39,7 +39,21 @@ func LoginRequest(username, password):
 	print("Receiving login request from client")
 	var player_id = multiplayer.get_remote_sender_id()
 	Authenticate.AuthenticatePlayer(username, password, player_id)
-	
+
+@rpc("any_peer", "reliable")
+func RegisterRequest(username: String, password: String):
+	print("Receiving register request from client")
+	var player_id = multiplayer.get_remote_sender_id()
+	if(username == "") or (password == "") or password.length() <= 6:
+		ReturnRegisterRequest(player_id, 1)
+	else:
+		Authenticate.CreateAccount(username.to_lower(), password, player_id)
+
+@rpc("authority", "call_remote", "reliable")
+func ReturnRegisterRequest(player_id, message):
+	# message: 1=failed to create, 2=username already exists, 3=welcome
+	ReturnRegisterRequest.rpc_id(player_id, message)
+
 @rpc("authority", "call_remote", "reliable")
 func ReturnLoginRequest(player_id, results, token):
 	ReturnLoginRequest.rpc_id(player_id, results, token)
